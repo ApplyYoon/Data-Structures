@@ -27,14 +27,15 @@ typedef struct _linkedlist
 //////////////////////// function prototypes /////////////////////////////////////
 
 // You should not change the prototype of this function
-int moveMaxToFront(ListNode **ptrHead, LinkedList *ll);
+int moveMaxToFront(ListNode **ptrHead);
 
 void printList(LinkedList *ll);
 void removeAllItems(LinkedList *ll);
 ListNode * findNode(LinkedList *ll, int index);
 int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
-
+int maxIndex, maxNumber;
+ListNode *maxNode;
 
 //////////////////////////// main() //////////////////////////////////////////////
 
@@ -68,7 +69,12 @@ int main()
 			printList(&ll);
 			break;
 		case 2:
-			moveMaxToFront(&(ll.head), &ll);  // You need to code this function
+			maxIndex = moveMaxToFront(&(ll.head));  // You need to code this function
+			maxNode = findNode(&ll, maxIndex);
+			maxNumber = maxNode -> item;
+
+			removeNode(&ll, maxIndex);
+			insertNode(&ll, 0, maxNumber);
 			printf("The resulting linked list after moving largest stored value to the front of the list is: ");
 			printList(&ll);
 			removeAllItems(&ll);
@@ -86,7 +92,7 @@ int main()
 
 ////////////////////////////////////////////////////////////////////////
 
-int moveMaxToFront(ListNode **ptrHead, LinkedList *ll)
+int moveMaxToFront(ListNode **ptrHead)
 {
 	int maxNumber = -1;
 	int maxIndex, curNode;
@@ -106,10 +112,7 @@ int moveMaxToFront(ListNode **ptrHead, LinkedList *ll)
 		index++;
 	}
 
-	removeNode(ll, maxIndex);
-	insertNode(ll, 0, maxNumber);
-
-	return 0;
+	return maxIndex;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
