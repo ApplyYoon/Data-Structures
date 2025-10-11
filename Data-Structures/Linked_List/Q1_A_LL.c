@@ -92,7 +92,7 @@ int insertSortedLL(LinkedList *ll, int item)
 {
 	ListNode *cur;
 	if (ll == NULL)
-		return 0;
+		return -1;
 
 	cur = ll->head;
 
