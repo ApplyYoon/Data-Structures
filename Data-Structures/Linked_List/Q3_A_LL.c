@@ -86,7 +86,26 @@ int main()
 
 void moveOddItemsToBack(LinkedList *ll)
 {
-	/* add your code here */
+	ListNode *cur;
+	if (ll == NULL) {
+		return;
+	}
+	cur = ll->head;               // first is head
+	
+	int index = 0;
+	int curNode;
+	for (int i = 0; i < ll->size; i++) {
+		curNode = cur->item;      // cur node's item
+		cur = cur->next;          // next node	
+		if (curNode % 2 == 1) {   // if a curNode is odd number
+			removeNode(ll, index);
+			insertNode(ll, ll->size, curNode);
+		}
+		else {
+			index++;
+		}
+	}
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
