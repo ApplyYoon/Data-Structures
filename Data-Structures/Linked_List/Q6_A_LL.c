@@ -34,8 +34,7 @@ void removeAllItems(LinkedList *ll);
 ListNode * findNode(LinkedList *ll, int index);
 int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
-int maxIndex, maxNumber;
-ListNode *maxNode;
+
 
 //////////////////////////// main() //////////////////////////////////////////////
 
@@ -68,17 +67,18 @@ int main()
 			printf("The resulting linked list is: ");
 			printList(&ll);
 			break;
-		case 2:
-			maxIndex = moveMaxToFront(&(ll.head));  // You need to code this function
-			maxNode = findNode(&ll, maxIndex);
-			maxNumber = maxNode -> item;
+		case 2: {
+			int maxIndex = moveMaxToFront(&(ll.head));  // You need to code this function
+			ListNode *maxNode = findNode(&ll, maxIndex);
+			int maxNumber = maxNode -> item;
 
 			removeNode(&ll, maxIndex);
 			insertNode(&ll, 0, maxNumber);
 			printf("The resulting linked list after moving largest stored value to the front of the list is: ");
 			printList(&ll);
 			removeAllItems(&ll);
-			break;
+			break;	
+		}
 		case 0:
 			removeAllItems(&ll);
 			break;
