@@ -8,6 +8,7 @@ Purpose: Implementing the required functions for Question 7 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#define INF 1000000000
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -102,7 +103,23 @@ int main()
 
 int smallestValue(BTNode *node)
 {
-	/* add your code here */
+    // Base case: if node is NULL, return a large number
+    if (node == NULL) return INF;
+
+    int smallest, valL, valR, valRoot;
+
+    // Get candidate values for the smallest value
+	valL = smallestValue(node->left);
+    valR = smallestValue(node->right);
+    valRoot = node->item;
+    
+    // Determine the smallest value among candidates
+    smallest = valL;
+    if (smallest > valR) smallest = valR;
+    if (smallest > valRoot) smallest = valRoot;
+
+    // Return the smallest value
+    return smallest;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
