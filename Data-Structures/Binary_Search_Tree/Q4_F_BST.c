@@ -91,7 +91,24 @@ int main()
 
 void postOrderIterativeS1(BSTNode *root)
 {
-	 /* add your code here */
+	if (root == NULL) return;
+
+    Stack s;
+    s.top = NULL;
+
+	BSTNode *current;
+    push(&s, root);
+
+    while (!isEmpty(&s))
+    {
+        current = pop(&s);
+		printf("%d ", current->item);
+		
+        // Push right first, then left (LIFO)
+        if (current->right != NULL) push(&s, current->right);
+        if (current->left  != NULL) push(&s, current->left);
+		
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
