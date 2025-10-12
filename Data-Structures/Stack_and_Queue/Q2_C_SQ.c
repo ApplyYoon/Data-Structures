@@ -113,12 +113,60 @@ int main()
 
 void createStackFromLinkedList(LinkedList *ll, Stack *s)
 {
-    /* add your code here */
+    ListNode *cur = ll->head;
+
+	int curItem;
+	while (cur != NULL)
+	{
+		curItem = cur->item;  // Get the current node's value
+		push(s, curItem);     // Push the value into the stack
+		cur = cur->next;      // Move to the next node in linke list
+	}
+	
 }
 
 void removeEvenValues(Stack *s)
 {
-	/* add your code here */
+	if (s == NULL || isEmptyStack(s))
+		return;
+	
+	int item;
+	int count = s->ll.size;  // Save the initial stacks's size
+
+	Stack tempStack;
+	tempStack.ll.head = NULL;
+	tempStack.ll.size = 0;
+
+	// Repeat count times (process every original element)
+	for (int i = 0; i < count; i++) {
+		
+		// Peek top element
+		item = s->ll.head->item;
+
+		// * Keep only odd numbers in tempStack *
+		if (item % 2 == 1) {
+			push(&tempStack, item);		
+		}
+
+		// Remove the top element
+		int poped = pop(s);
+		printf("poped number: %d\n", poped);
+	}
+
+
+	count = tempStack.ll.size; // Change count to tempStack's size
+
+	for (int i = 0; i < count; i++) { 
+		
+		// Peek tempStack's top element
+		item = tempStack.ll.head->item;
+
+		// Push it back to the original stack
+		push(s, item);       
+
+		// Pop tempStack's top element
+		pop(&tempStack);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////
