@@ -103,7 +103,26 @@ int main()
 
 int isStackPairwiseConsecutive(Stack *s)
 {
-  /* add your code here */
+	// Early return condition: if stack's size is odd
+	if (s->ll.size % 2 == 1)
+		return 0;
+
+	int item1, item2;
+	while (s->ll.size > 0)
+	{	
+		// printf("[in for] stack size: %d\n", s->ll.size);
+
+		item1 = pop(s); 
+		item2 = pop(s);
+		
+		// printf("[in for] result: %d\n", item1 - item2);
+
+		// if not-satisfied -> return 0;
+		if (item1 - item2 != 1) {
+			return 0;			
+		}
+	}	
+	return 1;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
