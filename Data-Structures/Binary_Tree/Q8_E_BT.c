@@ -102,7 +102,23 @@ int main()
 
 int hasGreatGrandchild(BTNode *node)
 {
-	/* add your code here */
+	// Base case
+    if (node == NULL) return -1;
+
+    int sumL = 0;
+    int sumR = 0;
+
+    sumL += hasGreatGrandchild(node->left);
+    sumR += hasGreatGrandchild(node->right);
+
+    // Get max value
+    int max = sumL;
+    if (sumL < sumR) max = sumR;
+
+    // If there exists at least one great-grandchild (depth >= 3)
+    if (max + 1 >= 3) printf("%d ", node->item);
+    
+    return max+1;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
