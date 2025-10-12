@@ -123,6 +123,8 @@ void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 		removeNode(ll2, 0);
 		index1 += 2;
 	}
+
+	return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
