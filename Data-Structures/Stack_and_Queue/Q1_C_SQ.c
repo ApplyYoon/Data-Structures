@@ -116,12 +116,41 @@ int main()
 
 void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 {
-	/* add your code here */
+	ListNode *cur = ll->head;
+	int curItem;
+	
+	while (cur != NULL)
+	{
+		curItem = cur->item;   // Get the current node's value
+		enqueue(q, curItem);   // Enqueue the value into the queue
+		cur = cur->next;       // Move to the next node in the linked list
+	}
+
+	return;
 }
 
 void removeOddValues(Queue *q)
 {
-	/* add your code here */
+	if (q == NULL || isEmptyQueue(q))
+    	return;
+
+	int item;
+	int count = q->ll.size;  // Save the initial queue size
+
+	// Repeat count times (process every original element)
+	for (int i = 0; i < count; i++) {    
+
+		// Peek front element
+		item = q->ll.head->item; 
+
+		// Keep only even numbers
+		if (item % 2 == 0){              
+			enqueue(q, item);            
+		}
+	
+		// Remove the front element
+		dequeue(q);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////
