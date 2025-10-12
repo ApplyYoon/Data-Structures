@@ -105,7 +105,13 @@ int main()
 
 void printSmallerValues(BTNode *node, int m)
 {
-	/* add your code here */
+	// Base case: stop recursion if the node is NULL
+    if (node == NULL) return;
+
+    // Preorder traversal (Root -> L -> R)
+    if (node->item < m) printf("%d ", node->item);  // If node's item is smaller than m, print it
+    printSmallerValues(node->left, m);
+    printSmallerValues(node->right, m);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
