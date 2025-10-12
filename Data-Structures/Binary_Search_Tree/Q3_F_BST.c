@@ -96,16 +96,16 @@ void preOrderIterative(BSTNode *root)
     Stack s;
     s.top = NULL;
 
+	BSTNode *current;
     push(&s, root);
 
     while (!isEmpty(&s))
     {
-        BSTNode *current = pop(&s);
-        printf("%d ", current->item);
-
+        current = pop(&s);
         // Push right first, then left (LIFO)
         if (current->right != NULL) push(&s, current->right);
         if (current->left  != NULL) push(&s, current->left);
+		printf("%d ", current->item);
     }
 }
 
