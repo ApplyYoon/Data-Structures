@@ -84,7 +84,7 @@ int main()
 			scanf("%s", str);
 			break;
         case 2:
-            if(balanced(str))
+            if(!balanced(str))
                 printf("not balanced!\n");
             else
                 printf("balanced!\n");
@@ -104,7 +104,45 @@ int main()
 ////////////////////////////////////////////////////////////
 int balanced(char *expression)
 {
-/* add your code here */
+	// Define Stack
+	Stack s;
+	s.ll.head = NULL;
+	s.ll.size = 0;
+
+	
+	char topChar, current;
+
+	// Traverse the string
+	while (*expression != '\0')
+	{
+		current = *expression; 
+
+		// If the top char is ) or ] or }, check the currently char 
+		if (current == ')' || current == ']' || current == '}') {
+
+			// If the stack is empty -> return
+            if (isEmptyStack(&s)) return 0;
+
+			// Peek the top char of stack
+            topChar = peek(&s);
+
+            if ((current == ')' && topChar == '(') ||
+                (current == ']' && topChar == '[') ||
+                (current == '}' && topChar == '{')) {
+                pop(&s);  // match
+            } else {
+                return 0; // mismatch
+            }
+        }
+		else {
+			push(&s, current);
+		}
+	
+		expression++;
+	}
+
+	if (s.ll.size > 0) return 0;   // mismatch
+	else return 1;                 // match
 }
 
 ////////////////////////////////////////////////////////////
