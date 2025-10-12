@@ -105,11 +105,12 @@ int sumOfOddNodes(BTNode *node)
     // Base case: if the node is NULL, return 0
     if (node == NULL) return 0;
 
-    
+    // Recursively calculate the sum from left and right subtrees
     int sum = 0;
     sum += sumOfOddNodes(node->left);
     sum += sumOfOddNodes(node->right);
 
+    // If the current node's value is odd, add it the total sum
     if (node->item % 2 == 1) return sum + node->item;
     else return sum;
 }
