@@ -88,11 +88,26 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void inOrderTraversal(BSTNode *root)
-{
-	 /* add your code here */
-}
+void inOrderIterative(BSTNode *root) {
+    Stack s;
+    s.top = NULL; 
+    BSTNode *current = root;
 
+    while (current != NULL || !isEmpty(&s))
+	{
+		
+		while (current != NULL)
+		{
+			push(&s, current);
+			current = current->left;
+		}
+		
+		current = pop(&s);
+		printf("%d ", current);
+
+		current = current->right;
+	}	
+}
 ///////////////////////////////////////////////////////////////////////////////
 
 void insertBSTNode(BSTNode **node, int value){
