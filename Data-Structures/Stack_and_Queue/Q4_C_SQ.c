@@ -110,9 +110,45 @@ int main()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+/*
+[ Conditions ]
+1. using a stack.
+2. reverseQueue() function only uses push() and pop() when adding or removing integers from the stack
+3  only uses enqueue() and dequeue() when adding or removing integers from the queue.
+4. Remember to empty the stack at the beginning, if the stack is not empty.
+
+[ Logic ]
+1. Move elements from the queue to the stack.
+2. Move elements from the stack back to the queue.
+*/
+
 void reverse(Queue *q)
 {
-/* add your code here */
+	// [ Condition 1, 4 ]
+	Stack s;
+	s.ll.head = NULL;
+	s.ll.size = 0;
+	s.ll.tail = NULL;
+
+	int temp;
+	int size;
+
+	// [ Logic 1 ]
+	size = q->ll.size;                 // Get queue's size
+	for (int i = 0; i < size; i++) {
+		temp = dequeue(q);             // dequeued element -> temp
+		push(&s, temp);                // temp -> stack
+	}	
+
+	// [ Logic 2 ]
+	size = s.ll.size;                 // Get stack's size
+	for (int i = 0; i < size; i++) {
+		temp = pop(&s);               // popped element -> temp
+		enqueue(q, temp);             // temp -> queue
+	}
+
+	return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
