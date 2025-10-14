@@ -98,7 +98,7 @@ int insertSortedLL(LinkedList *ll, int item)
 
 	int curNode;
 	int index = 0;
-	bool isInset = false;
+	bool isInsert = false;
 	while (cur != NULL)
 	{
 		curNode = cur->item;
@@ -107,18 +107,19 @@ int insertSortedLL(LinkedList *ll, int item)
 		}
 		if (curNode > item) {
 			insertNode(ll, index, item);
-			isInset = true;
+			isInsert = true;
 			return index;
 		}
 
 		cur = cur->next;
 		index++;
 	}
+
 	if (index == 0) {
 		insertNode(ll, 0, item);
 		return 0;
 	}
-	else if (!isInset) {
+	else if (!isInsert) {
 		insertNode(ll, index, item);
 		return index;
 	}

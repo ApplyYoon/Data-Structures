@@ -106,22 +106,20 @@ void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 	ListNode *cur2;
 
 	cur2 = ll2->head;
-	int index1 = 1;
+	int index = 1;
 
 	int curNode2;
 
 	int smaller = ll1->size;
-	if (smaller > ll2->size) {
-		smaller = ll2->size;
-	}
+	if (smaller > ll2->size) smaller = ll2->size;
 
 	for (int i = smaller; i > 0; i--) {
 		curNode2 = cur2->item;
-		insertNode(ll1, index1, curNode2);
+		insertNode(ll1, index, curNode2);
 		
 		cur2 = cur2->next;
 		removeNode(ll2, 0);
-		index1 += 2;
+		index += 2;
 	}
 
 	return;

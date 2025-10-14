@@ -87,9 +87,8 @@ int main()
 void moveOddItemsToBack(LinkedList *ll)
 {
 	ListNode *cur;
-	if (ll == NULL) {
-		return;
-	}
+	if (ll == NULL) return;
+	
 	cur = ll->head;               // first is head
 	
 	int index = 0;
