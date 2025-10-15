@@ -101,25 +101,17 @@ int main()
 int countOneChildNodes(BTNode *node)
 {
     // Base case: if the node is NULL, return 0
-    if (node == NULL) return 0;
-
-    // Determine whether the node has a left or right child
-    int left = 0;
-    int right = 0;
-    if (node->left != NULL) left = 1;
-    if (node->right != NULL) right = 1;
+    if (node == NULL)
+        return 0;
 
     // XOR result: true (1) only if exactly one child exists
-    int result = left ^ right;
+    int cnt = (node->left != NULL) ^ (node->right != NULL);
 
     // Recursively count one-child nodes in the left and right subtrees
-    int sum = 0;
-    sum += countOneChildNodes(node->left);
-    sum += countOneChildNodes(node->right);
+    cnt += countOneChildNodes(node->left);
+    cnt += countOneChildNodes(node->right);
 
-    // If current node has exactly one child, add 1
-    if (result) return sum + 1;
-    else return sum;
+    return cnt;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
